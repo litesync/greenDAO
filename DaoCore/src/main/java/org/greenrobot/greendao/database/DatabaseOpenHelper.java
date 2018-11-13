@@ -118,7 +118,7 @@ public abstract class DatabaseOpenHelper extends SQLiteOpenHelper {
 
     private EncryptedHelper checkEncryptedHelper() {
         if (encryptedHelper == null) {
-            encryptedHelper = new EncryptedHelper(context, name, version, loadSQLCipherNativeLibs);
+            encryptedHelper = new EncryptedHelperImpl(context, name, version, loadSQLCipherNativeLibs, this);
         }
         return encryptedHelper;
     }
@@ -131,7 +131,7 @@ public abstract class DatabaseOpenHelper extends SQLiteOpenHelper {
      */
     public Database getEncryptedWritableDb(String password) {
         EncryptedHelper encryptedHelper = checkEncryptedHelper();
-        return encryptedHelper.wrap(encryptedHelper.getWritableDatabase(password));
+        return encryptedHelper.getEncryptedWritableDb(password);
     }
 
     /**
@@ -142,7 +142,7 @@ public abstract class DatabaseOpenHelper extends SQLiteOpenHelper {
      */
     public Database getEncryptedWritableDb(char[] password) {
         EncryptedHelper encryptedHelper = checkEncryptedHelper();
-        return encryptedHelper.wrap(encryptedHelper.getWritableDatabase(password));
+        return encryptedHelper.getEncryptedWritableDb(password);
     }
 
     /**
@@ -153,7 +153,7 @@ public abstract class DatabaseOpenHelper extends SQLiteOpenHelper {
      */
     public Database getEncryptedReadableDb(String password) {
         EncryptedHelper encryptedHelper = checkEncryptedHelper();
-        return encryptedHelper.wrap(encryptedHelper.getReadableDatabase(password));
+        return encryptedHelper.getEncryptedReadableDb(password);
     }
 
     /**
@@ -164,12 +164,22 @@ public abstract class DatabaseOpenHelper extends SQLiteOpenHelper {
      */
     public Database getEncryptedReadableDb(char[] password) {
         EncryptedHelper encryptedHelper = checkEncryptedHelper();
-        return encryptedHelper.wrap(encryptedHelper.getReadableDatabase(password));
+        return encryptedHelper.getEncryptedReadableDb(password);
     }
 
-    private class EncryptedHelper extends net.sqlcipher.database.SQLiteOpenHelper {
-        public EncryptedHelper(Context context, String name, int version, boolean loadLibs) {
+    interface EncryptedHelper {
+        Database getEncryptedReadableDb(String password);
+        Database getEncryptedReadableDb(char[] password);
+        Database getEncryptedWritableDb(String password);
+        Database getEncryptedWritableDb(char[] password);
+    }
+
+    static final class EncryptedHelperImpl extends net.sqlcipher.database.SQLiteOpenHelper implements DatabaseOpenHelper.EncryptedHelper {
+        private final DatabaseOpenHelper delegate;
+
+        EncryptedHelperImpl(Context context, String name, int version, boolean loadLibs, DatabaseOpenHelper delegate) {
             super(context, name, null, version);
+            this.delegate = delegate;
             if (loadLibs) {
                 net.sqlcipher.database.SQLiteDatabase.loadLibs(context);
             }
@@ -177,20 +187,40 @@ public abstract class DatabaseOpenHelper extends SQLiteOpenHelper {
 
         @Override
         public void onCreate(net.sqlcipher.database.SQLiteDatabase db) {
-            DatabaseOpenHelper.this.onCreate(wrap(db));
+            delegate.onCreate(wrap(db));
         }
 
         @Override
         public void onUpgrade(net.sqlcipher.database.SQLiteDatabase db, int oldVersion, int newVersion) {
-            DatabaseOpenHelper.this.onUpgrade(wrap(db), oldVersion, newVersion);
+            delegate.onUpgrade(wrap(db), oldVersion, newVersion);
         }
 
         @Override
         public void onOpen(net.sqlcipher.database.SQLiteDatabase db) {
-            DatabaseOpenHelper.this.onOpen(wrap(db));
+            delegate.onOpen(wrap(db));
         }
 
-        protected Database wrap(net.sqlcipher.database.SQLiteDatabase sqLiteDatabase) {
+        @Override
+        public Database getEncryptedReadableDb(String password) {
+            return wrap(getReadableDatabase(password));
+        }
+
+        @Override
+        public Database getEncryptedReadableDb(char[] password) {
+            return wrap(getReadableDatabase(password));
+        }
+
+        @Override
+        public Database getEncryptedWritableDb(String password) {
+            return wrap(getWritableDatabase(password));
+        }
+
+        @Override
+        public Database getEncryptedWritableDb(char[] password) {
+            return wrap(getWritableDatabase(password));
+        }
+
+        private Database wrap(net.sqlcipher.database.SQLiteDatabase sqLiteDatabase) {
             return new EncryptedDatabase(sqLiteDatabase);
         }
 
