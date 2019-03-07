@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.ArrayList;
 </#if>
 import android.database.Cursor;
-import android.database.sqlite.SQLiteStatement;
+import org.sqlite.database.sqlite.SQLiteStatement;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;

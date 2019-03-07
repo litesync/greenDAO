@@ -16,7 +16,7 @@
 
 package org.greenrobot.greendao.database;
 
-import android.database.sqlite.SQLiteStatement;
+import org.sqlite.database.sqlite.SQLiteStatement;
 
 public class StandardDatabaseStatement implements DatabaseStatement {
     private final SQLiteStatement delegate;

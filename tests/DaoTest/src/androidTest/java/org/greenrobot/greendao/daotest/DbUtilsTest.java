@@ -19,7 +19,7 @@
 package org.greenrobot.greendao.daotest;
 
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import org.sqlite.database.sqlite.SQLiteDatabase;
 import org.greenrobot.greendao.DbUtils;
 import org.greenrobot.greendao.database.StandardDatabase;
 import org.greenrobot.greendao.test.DbTest;

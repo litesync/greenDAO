@@ -18,7 +18,7 @@
 
 package org.greenrobot.greendao.daotest;
 
-import android.database.sqlite.SQLiteDatabase;
+import org.sqlite.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import org.greenrobot.greendao.DaoLog;
 import org.greenrobot.greendao.database.StandardDatabase;

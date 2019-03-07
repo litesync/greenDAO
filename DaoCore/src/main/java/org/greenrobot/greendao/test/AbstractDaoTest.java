@@ -18,7 +18,7 @@ package org.greenrobot.greendao.test;
 
 import java.lang.reflect.Method;
 
-import android.database.sqlite.SQLiteDatabase;
+import org.sqlite.database.sqlite.SQLiteDatabase;
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.DaoLog;
 import org.greenrobot.greendao.InternalUnitTestDaoAccess;

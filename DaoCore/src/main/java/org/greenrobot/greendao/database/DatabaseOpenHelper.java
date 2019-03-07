@@ -17,9 +17,9 @@
 package org.greenrobot.greendao.database;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
-import android.database.sqlite.SQLiteOpenHelper;
+import org.sqlite.database.sqlite.SQLiteDatabase;
+import org.sqlite.database.sqlite.SQLiteDatabase.CursorFactory;
+import org.sqlite.database.sqlite.SQLiteOpenHelper;
 
 /**
  * SQLiteOpenHelper to allow working with greenDAO's {@link Database} abstraction to create and update database schemas.

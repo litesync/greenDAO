@@ -5,7 +5,7 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteQueryBuilder;
+import org.sqlite.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
 import org.greenrobot.greendao.DaoLog;

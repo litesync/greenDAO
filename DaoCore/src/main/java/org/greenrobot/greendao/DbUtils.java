@@ -24,7 +24,7 @@ import java.io.OutputStream;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteDatabase;
+import org.sqlite.database.sqlite.SQLiteDatabase;
 
 import org.greenrobot.greendao.database.Database;
 

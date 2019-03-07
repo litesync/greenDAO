@@ -18,7 +18,7 @@ package org.greenrobot.greendao.database;
 
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
+import org.sqlite.database.sqlite.SQLiteDatabase;
 
 public class StandardDatabase implements Database {
     private final SQLiteDatabase delegate;

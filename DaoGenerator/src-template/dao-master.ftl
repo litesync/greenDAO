@@ -21,8 +21,8 @@ along with greenDAO Generator.  If not, see <http://www.gnu.org/licenses/>.
 package ${schema.defaultJavaPackageDao};
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
+import org.sqlite.database.sqlite.SQLiteDatabase;
+import org.sqlite.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.util.Log;
 
 import org.greenrobot.greendao.AbstractDaoMaster;

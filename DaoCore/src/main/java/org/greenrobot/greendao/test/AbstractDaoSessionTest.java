@@ -19,7 +19,7 @@ package org.greenrobot.greendao.test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
-import android.database.sqlite.SQLiteDatabase;
+import org.sqlite.database.sqlite.SQLiteDatabase;
 import org.greenrobot.greendao.AbstractDaoMaster;
 import org.greenrobot.greendao.AbstractDaoSession;
 import org.greenrobot.greendao.database.Database;

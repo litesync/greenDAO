@@ -19,8 +19,8 @@ package org.greenrobot.greendao;
 import android.database.CrossProcessCursor;
 import android.database.Cursor;
 import android.database.CursorWindow;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteStatement;
+import org.sqlite.database.sqlite.SQLiteDatabase;
+import org.sqlite.database.sqlite.SQLiteStatement;
 
 import org.greenrobot.greendao.annotation.apihint.Experimental;
 import org.greenrobot.greendao.database.Database;

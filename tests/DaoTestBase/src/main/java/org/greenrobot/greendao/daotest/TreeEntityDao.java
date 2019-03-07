@@ -3,7 +3,7 @@ package org.greenrobot.greendao.daotest;
 import java.util.List;
 import java.util.ArrayList;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteStatement;
+import org.sqlite.database.sqlite.SQLiteStatement;
 
 import org.greenrobot.greendao.AbstractDao;
 import org.greenrobot.greendao.Property;
